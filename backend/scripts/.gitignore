@@ -1,0 +1,27 @@
+# 脚本目录特定的忽略规则
+
+# 脚本执行日志
+*.log
+script.log
+
+# 临时输出文件
+output/
+results/
+temp/
+
+# 脚本生成的配置文件
+config.ini
+settings.json
+
+# 脚本缓存
+.cache/
+cache/
+
+# 测试输出
+test_output/
+test_results/
+
+# 备份文件
+*.bak
+*.backup
+*.old 

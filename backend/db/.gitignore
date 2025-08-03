@@ -1,0 +1,29 @@
+# 数据库目录特定的忽略规则
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.sqlite-journal
+
+# 数据库备份
+*.backup
+*.bak
+*.dump
+
+# 迁移文件（可选，根据需要调整）
+# alembic/versions/
+
+# 数据库日志
+*.log
+db.log
+
+# 临时数据库文件
+temp.db
+test.db
+dev.db
+
+# 数据库配置
+db_config.json
+database.ini 
