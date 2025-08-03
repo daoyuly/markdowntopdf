@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { User, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react'
 import { useAuthStore } from '../stores/authStore'
 import { useNavigate } from 'react-router-dom'
+import { register as registerService } from '../services/register'
 
 interface RegisterFormData {
   name: string
@@ -40,7 +41,11 @@ const RegisterPage = () => {
       }
       
       // 模拟注册成功，直接登录
-      const success = await login(data.email, data.password)
+      const success = await registerService({
+        username: data.name,
+        email: data.email,
+        password: data.password
+      })
       if (success) {
         navigate('/')
       } else {

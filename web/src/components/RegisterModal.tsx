@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import { useAuthStore } from '../stores/authStore'
+import { register as registerService } from '../services/register'
 
 interface RegisterModalProps {
   onClose: () => void
@@ -43,7 +44,11 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
       }
       
       // 模拟注册成功，直接登录
-      const success = await login(data.email, data.password)
+      const success = await registerService({
+        username: data.name,
+        email: data.email,
+        password: data.password
+      })
       if (success) {
         onClose()
       } else {

@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { login } from '../services/login'
 
 interface AuthState {
   isLoggedIn: boolean
@@ -14,8 +15,12 @@ export const useAuthStore = create<AuthState>((set) => ({
   isLoggedIn: false,
   user: null,
   login: async (email: string, password: string) => {
+    const response = await login({
+      username: email,
+      password
+    })
     // 模拟登录逻辑
-    if (email && password) {
+    if (response?.user?.id) {
       set({
         isLoggedIn: true,
         user: {
