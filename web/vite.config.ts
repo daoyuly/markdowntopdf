@@ -7,5 +7,14 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+  optimizeDeps: {
+    exclude: ['../wasm/wasm_crypto.js']
+  },
+  assetsInclude: ['**/*.wasm'],
+  build: {
+    rollupOptions: {
+      external: ['../wasm/wasm_crypto.js']
+    }
   }
 }) 

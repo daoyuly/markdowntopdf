@@ -6,6 +6,7 @@ import LoginModal from './components/LoginModal'
 import RegisterModal from './components/RegisterModal'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import WasmDemo from './components/WasmDemo'
 import { useAuthStore } from './stores/authStore'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/wasm-demo" element={<WasmDemo />} />
       <Route path="/" element={
         <div className="flex h-screen bg-gray-100">
           {/* <Navigation /> */}
