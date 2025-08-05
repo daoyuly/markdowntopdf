@@ -1,4 +1,4 @@
-import { encryptCredentials, hashPassword } from '../utils/wasmCrypto';
+// import { encryptCredentials, hashPassword } from '../utils/wasmCrypto';
 
 // 登录请求参数类型
 export interface LoginRequest {
@@ -30,24 +30,23 @@ export interface ErrorResponse {
 export const login = async (credentials: LoginRequest): Promise<LoginResponse> => {
   try {
     // 使用 WebAssembly 加密用户名和密码
-    const encryptedData = await encryptCredentials(credentials.username, credentials.password);
-    
+    // const encryptedData = await encryptCredentials(credentials.username, credentials.password);
     // 生成密码哈希用于服务器验证
-    const passwordHash = await hashPassword(credentials.password);
+    // const passwordHash = await hashPassword(credentials.password);
     
+    // 使用 FormData 封装登录数据
+    const formData = new FormData();
+    formData.append('username', credentials.username);
+    formData.append('password', credentials.password);
+    // formData.append('password', passwordHash); // 发送哈希后的密码
+    // formData.append('encrypted_username', encryptedData.encrypted_username);
+    // formData.append('encrypted_password', encryptedData.encrypted_password);
+    // formData.append('salt', encryptedData.salt);
+    // formData.append('iv', encryptedData.iv);
+
     const response = await fetch('http://localhost:8000/api/auth/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: credentials.username,
-        password: passwordHash, // 发送哈希后的密码
-        encrypted_username: encryptedData.encrypted_username,
-        encrypted_password: encryptedData.encrypted_password,
-        salt: encryptedData.salt,
-        iv: encryptedData.iv,
-      }),
+      body: formData,
     });
 
     if (!response.ok) {

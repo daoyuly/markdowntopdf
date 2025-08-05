@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态资源服务演示</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 静态资源服务演示</h1>
+            <p>这个页面使用了外部CSS文件，通过uvicorn静态文件服务提供</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="success">✅ 静态文件服务功能</h2>
+            <p>uvicorn 不仅可以作为 API 服务器，还可以提供完整的 Web 服务功能：</p>
+            <ul>
+                <li>HTML 页面服务</li>
+                <li>CSS 样式文件</li>
+                <li>JavaScript 脚本</li>
+                <li>图片和媒体文件</li>
+                <li>字体文件</li>
+                <li>文档和 PDF 文件</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2 class="info">🔧 技术特性</h2>
+            <ul>
+                <li><strong>高性能：</strong>基于 ASGI 标准，支持异步处理</li>
+                <li><strong>自动重载：</strong>开发模式下文件变化自动重启</li>
+                <li><strong>CORS 支持：</strong>内置跨域资源共享支持</li>
+                <li><strong>静态文件：</strong>高效的静态资源服务</li>
+                <li><strong>API 文档：</strong>自动生成 Swagger/OpenAPI 文档</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2 class="warning">📁 文件结构</h2>
+            <pre>
+backend/
+├── static/          # 静态文件目录
+│   ├── style.css    # CSS 样式文件
+│   ├── demo.html    # HTML 页面
+│   └── with-css.html
+├── templates/       # 模板文件目录
+└── app/
+    └── main.py      # FastAPI 应用
+            </pre>
+        </div>
+        
+        <div class="card">
+            <h2>🔗 相关链接</h2>
+            <a href="/" class="btn">返回主页</a>
+            <a href="/static/demo.html" class="btn">查看演示页面</a>
+            <a href="/docs" class="btn">API 文档</a>
+            <a href="/health" class="btn">健康检查</a>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react'
-import { useAuthStore } from '../stores/authStore'
+// import { useAuthStore } from '../stores/authStore'
 import { register as registerService } from '../services/register'
 
 interface RegisterModalProps {
@@ -21,7 +21,7 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const { login } = useAuthStore()
+  // const { login } = useAuthStore()
   
   const {
     register,
@@ -168,7 +168,7 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
                 <input
                   {...register('confirmPassword', { 
                     required: 'Please confirm your password',
-                    validate: value => value === password || 'Passwords do not match'
+                    validate: (value: string) => value === password || 'Passwords do not match'
                   })}
                   type={showConfirmPassword ? 'text' : 'password'}
                   id="confirmPassword"

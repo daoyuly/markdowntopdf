@@ -15,6 +15,7 @@ const WasmDemo: React.FC = () => {
     try {
       await initWasm();
       setIsInitialized(true);
+      console.log('WebAssembly 初始化成功', isInitialized);
     } catch (err) {
       setError('WebAssembly 初始化失败');
     } finally {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Markdown转PDF服务{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Markdown转PDF服务</h1>
+            <p>基于 FastAPI + uvicorn 的现代化 Web 服务</p>
+        </div>
+        
+        {% block content %}
+        <div class="card">
+            <h2>欢迎使用</h2>
+            <p>这是一个使用 Jinja2 模板引擎渲染的页面。</p>
+        </div>
+        {% endblock %}
+        
+        <div class="card">
+            <h2>🔗 快速链接</h2>
+            <a href="/" class="btn">主页</a>
+            <a href="/docs" class="btn">API文档</a>
+            <a href="/static/demo.html" class="btn">静态文件演示</a>
+            <a href="/static/with-css.html" class="btn">CSS演示</a>
+        </div>
+    </div>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

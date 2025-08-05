@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { User, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react'
-import { useAuthStore } from '../stores/authStore'
+// import { useAuthStore } from '../stores/authStore'
 import { useNavigate } from 'react-router-dom'
 import { register as registerService } from '../services/register'
 
@@ -17,7 +17,7 @@ const RegisterPage = () => {
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const { login } = useAuthStore()
+  // const { login } = useAuthStore()
   const navigate = useNavigate()
   
   const {
@@ -170,7 +170,7 @@ const RegisterPage = () => {
                 <input
                   {...register('confirmPassword', { 
                     required: 'Please confirm your password',
-                    validate: value => value === password || 'Passwords do not match'
+                    validate: (value: string) => value === password || 'Passwords do not match'
                   })}
                   type={showConfirmPassword ? 'text' : 'password'}
                   id="confirmPassword"
