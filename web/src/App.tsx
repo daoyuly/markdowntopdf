@@ -30,7 +30,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/wasm-demo" element={<WasmDemo />} />
       <Route path="/" element={
-        <div className="flex h-screen bg-gray-100 overflow-hidden">
+        <div className="flex h-screen bg-gray-100 ">
           {/* <Navigation /> */}
           <Sidebar onLoginClick={() => setShowLoginModal(true)} />
           <div className="flex-1 flex flex-col min-h-0">

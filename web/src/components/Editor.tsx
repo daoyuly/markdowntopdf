@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEditorStore } from '../stores/editorStore'
 import MarkdownPreview from './MarkdownPreview'
-// import FileUploader from './FileUploader'
+import FileUploader from './FileUploader'
 import EditorHeader from './EditorHeader'
 
 const Editor = () => {
@@ -19,23 +19,23 @@ const Editor = () => {
 
   const renderEditorContent = () => {
     return (
-      <div className="">
+      <div className="h-full flex" style={{ height: 'calc(100vh - 159px)' }}>
         {/* Line Numbers */}
-        <div className="w-12 bg-gray-50 border-r border-gray-200 p-2 text-xs text-gray-500 font-mono line-numbers">
+        <div className="w-12 bg-gray-50 border-r border-gray-200 p-2 text-sm text-gray-500 font-mono line-numbers p-4">
           {renderLineNumbers()}
         </div>
 
         {/* Editor */}
-        <div className="relative">
+        <div className="flex-1 relative">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="p-4 font-mono text-sm border-none outline-none resize-none editor-textarea"
+            className="w-full h-full p-4 font-mono text-sm border-none outline-none resize-none editor-textarea"
             placeholder="Start typing your Markdown here..."
           />
 
           {/* File Upload Overlay */}
-          {/* <FileUploader /> */}
+          {content.length === 0 && <FileUploader />}
         </div>
       </div>
     )
