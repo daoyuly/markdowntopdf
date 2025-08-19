@@ -74,3 +74,53 @@
     @apply h-full overflow-y-auto scrollbar-thin;
   }
 } 
+
+/* CodeMirror Editor Styles */
+.editor-codemirror {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.editor-codemirror .cm-editor {
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.editor-codemirror .cm-editor .cm-scroller {
+  font-family: inherit;
+}
+
+.editor-codemirror .cm-editor .cm-content {
+  padding: 16px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.editor-codemirror .cm-editor .cm-line {
+  padding: 0;
+}
+
+.editor-codemirror .cm-editor .cm-gutters {
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.editor-codemirror .cm-editor .cm-gutterElement {
+  padding: 0 8px;
+}
+
+.editor-codemirror .cm-editor .cm-activeLine {
+  background-color: #f0f8ff;
+}
+
+.editor-codemirror .cm-editor .cm-selectionBackground {
+  background-color: #b3d4fc;
+}
+
+.editor-codemirror .cm-editor .cm-cursor {
+  border-left: 2px solid #007acc;
+} 
