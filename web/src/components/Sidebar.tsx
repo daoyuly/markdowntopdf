@@ -9,7 +9,7 @@ const Sidebar = ({ onLoginClick }: SidebarProps) => {
   const { isLoggedIn, user, logout } = useAuthStore()
 
   return (
-    <div className="w-64 bg-gray-800 text-white p-6">
+    <div className="w-64 bg-gray-800 text-white p-6 h-full overflow-y-auto">
       <div className="flex items-center gap-2 mb-6">
         <div className="w-8 h-8 rounded flex items-center justify-center bg-white">
           <img src="/src/assets/logo_t.png" alt="logo" className="w-8 h-8" />
