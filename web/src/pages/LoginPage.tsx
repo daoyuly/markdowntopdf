@@ -45,9 +45,7 @@ const LoginPage = () => {
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-2xl text-gray-900">MARKDOWN</span>
-            <FileText size={24} className="text-gray-900" />
-            <span className="font-bold text-2xl text-gray-900">TO PDF</span>
+            <span className="font-bold text-2xl text-gray-900">Markdown TO PDF</span>
           </div>
         </div>
         

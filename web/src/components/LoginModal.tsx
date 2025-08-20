@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Lock, FileText } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '../stores/authStore'
 
 interface LoginModalProps {
@@ -14,6 +15,7 @@ interface LoginFormData {
 }
 
 const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const { login } = useAuthStore()
@@ -33,10 +35,10 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
       if (success) {
         onClose()
       } else {
-        setError('Invalid email or password')
+        setError(t('auth.invalidCredentials'))
       }
     } catch (err) {
-      setError('Login failed. Please try again.')
+      setError(t('auth.loginFailed'))
     } finally {
       setIsLoading(false)
     }
@@ -48,9 +50,7 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
         {/* Header */}
         <div className="bg-gray-800 text-white p-4 rounded-t-lg flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-lg">MARKDOWN</span>
-            <FileText size={20} />
-            <span className="font-bold text-lg">TO PDF</span>
+            <span className="font-bold text-lg">MARKDOWN TO PDF</span>
           </div>
         </div>
 
@@ -59,20 +59,20 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email address
+                {t('auth.email')}
               </label>
               <input
                 {...register('email', { 
-                  required: 'Email is required',
+                  required: t('auth.emailRequired'),
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address'
+                    message: t('auth.invalidEmail')
                   }
                 })}
                 type="email"
                 id="email"
                 className="input-field"
-                placeholder="Enter your email"
+                placeholder={t('auth.enterEmail')}
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -81,20 +81,20 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
+                {t('auth.password')}
               </label>
               <input
                 {...register('password', { 
-                  required: 'Password is required',
+                  required: t('auth.passwordRequired'),
                   minLength: {
                     value: 6,
-                    message: 'Password must be at least 6 characters'
+                    message: t('auth.passwordTooShort')
                   }
                 })}
                 type="password"
                 id="password"
                 className="input-field"
-                placeholder="Enter your password"
+                placeholder={t('auth.enterPassword')}
               />
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
@@ -103,7 +103,7 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
 
             <div className="text-right">
               <a href="#" className="text-sm text-blue-600 hover:text-blue-800">
-                Forgot your password?
+                {t('auth.forgotPassword')}
               </a>
             </div>
 
@@ -123,7 +123,7 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
               ) : (
                 <>
                   <Lock size={16} />
-                  Login
+                  {t('auth.login')}
                 </>
               )}
             </button>
@@ -132,19 +132,19 @@ const LoginModal = ({ onClose, onSwitchToRegister }: LoginModalProps) => {
           {/* Footer Links */}
           <div className="mt-6 text-center space-y-2 text-sm">
             <p>
-              Don't have an account?{' '}
+              {t('auth.dontHaveAccount')}{' '}
               <button
                 type="button"
                 onClick={onSwitchToRegister}
                 className="text-blue-600 hover:text-blue-800 font-medium"
               >
-                Register
+                {t('auth.register')}
               </button>
             </p>
             <p>
-              Need help?{' '}
+              {t('auth.needHelp')}{' '}
               <a href="#" className="text-blue-600 hover:text-blue-800 font-medium">
-                contact support
+                {t('auth.contactSupport')}
               </a>
             </p>
           </div>

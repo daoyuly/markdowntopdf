@@ -2,6 +2,7 @@ import { Download, LogIn } from 'lucide-react'
 import { useAuthStore } from '../stores/authStore'
 import { generatePDF } from '../utils/pdfGenerator'
 import { Link } from 'react-router-dom'
+import LanguageSwitcher from './LanguageSwitcher'
 
 interface EditorHeaderProps {
   documentName: string
@@ -26,6 +27,7 @@ const EditorHeader = ({ documentName, content }: EditorHeaderProps) => {
         <p className="text-sm text-gray-600">Markdown to PDF</p>
       </div>
       <div className="flex gap-2">
+        <LanguageSwitcher />
         <button
           onClick={handleDownload}
           className="btn-primary"

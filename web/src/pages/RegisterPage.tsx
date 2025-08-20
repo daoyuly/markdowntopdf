@@ -4,6 +4,8 @@ import { User, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react'
 // import { useAuthStore } from '../stores/authStore'
 import { useNavigate } from 'react-router-dom'
 import { register as registerService } from '../services/register'
+// 正确导入logo图片
+import logoWebp from '../assets/logo.webp'
 
 interface RegisterFormData {
   name: string
@@ -64,7 +66,7 @@ const RegisterPage = () => {
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <div className="w-12 h-12 bg-green-500 rounded flex items-center justify-center">
-            <span className="text-white font-bold text-lg">M</span>
+            <img src={logoWebp} alt="logo" className="w-12 h-12" />
           </div>
         </div>
         

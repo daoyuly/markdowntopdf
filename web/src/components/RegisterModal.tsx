@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { User, Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 // import { useAuthStore } from '../stores/authStore'
 import { register as registerService } from '../services/register'
+// 正确导入logo图片
+import logoWebp from '../assets/logo.webp'
 
 interface RegisterModalProps {
   onClose: () => void
@@ -17,6 +20,7 @@ interface RegisterFormData {
 }
 
 const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -39,7 +43,7 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
     try {
       // 模拟注册逻辑
       if (data.password !== data.confirmPassword) {
-        setError('Passwords do not match')
+        setError(t('auth.passwordsDoNotMatch'))
         return
       }
       
@@ -52,10 +56,10 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
       if (success) {
         onClose()
       } else {
-        setError('Registration failed. Please try again.')
+        setError(t('auth.registrationFailed'))
       }
     } catch (err) {
-      setError('Registration failed. Please try again.')
+      setError(t('auth.registrationFailed'))
     } finally {
       setIsLoading(false)
     }
@@ -68,9 +72,9 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
         <div className="bg-gray-800 text-white p-4 rounded-t-lg flex items-center justify-center">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">M</span>
+              <img src={logoWebp} title="logo" className="w-8 h-8" />
             </div>
-            <span className="font-bold text-lg">Register</span>
+            <span className="font-bold text-lg">{t('auth.register')}</span>
           </div>
         </div>
 
@@ -79,22 +83,22 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Name
+                {t('auth.name')}
               </label>
               <div className="relative">
                 <User size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   {...register('name', { 
-                    required: 'Name is required',
+                    required: t('auth.nameRequired'),
                     minLength: {
                       value: 2,
-                      message: 'Name must be at least 2 characters'
+                      message: t('auth.nameTooShort')
                     }
                   })}
                   type="text"
                   id="name"
                   className="input-field pl-10"
-                  placeholder="Enter your name"
+                  placeholder={t('auth.enterName')}
                 />
               </div>
               {errors.name && (
@@ -104,22 +108,22 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
+                {t('auth.email')}
               </label>
               <div className="relative">
                 <Mail size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   {...register('email', { 
-                    required: 'Email is required',
+                    required: t('auth.emailRequired'),
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address'
+                      message: t('auth.invalidEmail')
                     }
                   })}
                   type="email"
                   id="email"
                   className="input-field pl-10"
-                  placeholder="Enter your email"
+                  placeholder={t('auth.enterEmail')}
                 />
               </div>
               {errors.email && (
@@ -129,22 +133,22 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
+                {t('auth.password')}
               </label>
               <div className="relative">
                 <Lock size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   {...register('password', { 
-                    required: 'Password is required',
+                    required: t('auth.passwordRequired'),
                     minLength: {
                       value: 6,
-                      message: 'Password must be at least 6 characters'
+                      message: t('auth.passwordTooShort')
                     }
                   })}
                   type={showPassword ? 'text' : 'password'}
                   id="password"
                   className="input-field pl-10 pr-10"
-                  placeholder="Enter your password"
+                  placeholder={t('auth.enterPassword')}
                 />
                 <button
                   type="button"
@@ -161,19 +165,19 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
 
             <div>
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
-                Confirm Password
+                {t('auth.confirmPassword')}
               </label>
               <div className="relative">
                 <Lock size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   {...register('confirmPassword', { 
-                    required: 'Please confirm your password',
-                    validate: (value: string) => value === password || 'Passwords do not match'
+                    required: t('auth.confirmPasswordRequired'),
+                    validate: (value: string) => value === password || t('auth.passwordsDoNotMatch')
                   })}
                   type={showConfirmPassword ? 'text' : 'password'}
                   id="confirmPassword"
                   className="input-field pl-10 pr-10"
-                  placeholder="Confirm your password"
+                  placeholder={t('auth.confirmYourPassword')}
                 />
                 <button
                   type="button"
@@ -200,7 +204,7 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
                 onClick={onSwitchToLogin}
                 className="text-sm text-blue-600 hover:text-blue-800 font-medium"
               >
-                Already registered?
+                {t('auth.alreadyRegistered')}
               </button>
               <button
                 type="submit"
@@ -210,7 +214,7 @@ const RegisterModal = ({ onClose, onSwitchToLogin }: RegisterModalProps) => {
                 {isLoading ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                 ) : (
-                  'REGISTER'
+                  t('auth.register').toUpperCase()
                 )}
               </button>
             </div>

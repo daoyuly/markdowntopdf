@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import WasmDemo from './components/WasmDemo'
 import { useAuthStore } from './stores/authStore'
+import Navigation from './components/Navigation'
 
 function App() {
   const { } = useAuthStore()
